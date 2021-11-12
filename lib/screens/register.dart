@@ -272,7 +272,7 @@ class FormButton extends StatelessWidget {
       ),
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.resolveWith<Color>(
-              (Set<MaterialState> states) {
+          (Set<MaterialState> states) {
             if (states.contains(MaterialState.pressed)) {
               return Colors.redAccent;
             }
@@ -282,10 +282,8 @@ class FormButton extends StatelessWidget {
         padding: MaterialStateProperty.all<EdgeInsets>(
             EdgeInsets.symmetric(vertical: screenHeight * .02)),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18.0)
-            )
-        ),),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0))),
+      ),
     );
   }
 }

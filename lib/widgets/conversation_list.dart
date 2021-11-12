@@ -24,7 +24,6 @@ class _ConversationListState extends State<ConversationList> {
     return id;
   }
 
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -36,6 +35,7 @@ class _ConversationListState extends State<ConversationList> {
                     .collection('messages')
                     .doc(getUser().toString())
                     .collection('messages')
+                    .orderBy("date", descending: true)
                     .snapshots(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
@@ -55,9 +55,7 @@ class _ConversationListState extends State<ConversationList> {
                           read: x['read'],
                         );
                       },
-
                     );
-
                   } else {
                     return const Center(child: CircularProgressIndicator());
                   }
@@ -90,13 +88,13 @@ class BuildItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Map<String, dynamic> data = <String, dynamic>{
-          "read": true
-        };
+        Map<String, dynamic> data = <String, dynamic>{"read": true};
         firebase
             .collection('messages')
             .doc(getUser().toString())
-            .collection('messages').doc(receiver).update(data);
+            .collection('messages')
+            .doc(receiver)
+            .update(data);
         Navigator.push(context, MaterialPageRoute(builder: (context) {
           return ChatDetail(id: receiver.toString(), name: toName.toString());
         }));

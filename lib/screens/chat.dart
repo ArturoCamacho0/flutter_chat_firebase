@@ -11,7 +11,6 @@ class Chat extends StatefulWidget {
 }
 
 class _ChatState extends State<Chat> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

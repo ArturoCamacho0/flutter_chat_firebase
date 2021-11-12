@@ -14,12 +14,16 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _currentTabIndex = 0;
-  final List<Widget> _myPage = <Widget>[const Chat(), const Contacts(), const Chat()];
+  final List<Widget> _myPage = <Widget>[
+    const Chat(),
+    const Contacts(),
+    const Chat()
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:PageView.builder(
+      body: PageView.builder(
         itemBuilder: (context, position) => _myPage[_currentTabIndex],
         itemCount: _myPage.length,
       ),
@@ -57,13 +61,15 @@ class _HomeState extends State<Home> {
       case 1:
         break;
       case 2:
-        try{
+        try {
           _auth.signOut();
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const LoginScreen()),
           );
-        }catch(e){print(e);}
+        } catch (e) {
+          print(e);
+        }
         break;
     }
     setState(() {

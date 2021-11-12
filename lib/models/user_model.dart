@@ -3,10 +3,8 @@ class UserModel {
   String name;
 
   factory UserModel.fromMap(data) {
-    return UserModel(
-        id: data['id'], name: data['name']);
+    return UserModel(id: data['id'], name: data['name']);
   }
 
-  UserModel(
-      {required this.id, required this.name});
+  UserModel({required this.id, required this.name});
 }

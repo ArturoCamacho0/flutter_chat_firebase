@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ChatModel {
-  ChatModel({required this.id, required this.userIds, required this.lastMessage});
+  ChatModel(
+      {required this.id, required this.userIds, required this.lastMessage});
 
   factory ChatModel.fromFireStore(DocumentSnapshot doc) {
     final Map<String, dynamic> data = doc.data as Map<String, dynamic>;
@@ -9,8 +10,7 @@ class ChatModel {
     return ChatModel(
         id: doc.id,
         userIds: data['users'] ?? <dynamic>[],
-        lastMessage: data['lastMessage'] ?? <dynamic>{}
-    );
+        lastMessage: data['lastMessage'] ?? <dynamic>{});
   }
 
   String id;
@@ -19,7 +19,12 @@ class ChatModel {
 }
 
 class Message {
-  Message({required this.id, required this.content, required this.idFrom, required this.idTo, required this.timestamp});
+  Message(
+      {required this.id,
+      required this.content,
+      required this.idFrom,
+      required this.idTo,
+      required this.timestamp});
 
   factory Message.fromFireStore(DocumentSnapshot doc) {
     final Map<String, dynamic> data = doc.data as Map<String, dynamic>;
@@ -29,8 +34,7 @@ class Message {
         content: data['content'],
         idFrom: data['idFrom'],
         idTo: data['idTo'],
-        timestamp: data['timestamp']
-    );
+        timestamp: data['timestamp']);
   }
 
   String id;

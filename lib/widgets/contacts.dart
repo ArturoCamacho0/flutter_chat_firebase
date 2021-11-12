@@ -111,26 +111,25 @@ class Contacts extends StatelessWidget {
         child: SingleChildScrollView(
           physics: const ScrollPhysics(),
           child: StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance
-                  .collection('users')
-                  .snapshots(),
+              stream:
+                  FirebaseFirestore.instance.collection('users').snapshots(),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return ListView.builder(
                     shrinkWrap: true,
                     physics: const ScrollPhysics(),
                     // Traemos los datos de la colección
-                    itemCount:snapshot.data!.docs.isNotEmpty
+                    itemCount: snapshot.data!.docs.isNotEmpty
                         ? snapshot.data!.docs.length
                         : 0,
                     itemBuilder: (context, i) {
                       QueryDocumentSnapshot x = snapshot.data!.docs[i];
-                        if(auth.currentUser!.uid.toString() != x['user_id']){
-                          return ContactsListItem(
-                              user: User(name: x['name'], id: x['user_id']));
-                        }else{
-                          return Text("");
-                        }
+                      if (auth.currentUser!.uid.toString() != x['user_id']) {
+                        return ContactsListItem(
+                            user: User(name: x['name'], id: x['user_id']));
+                      } else {
+                        return Text("");
+                      }
                     },
                   );
                 } else {
